@@ -15,7 +15,7 @@ use an SWD debugger for the first install, then update over Bluetooth.
   <img src="docs/images/stopwatch.png" alt="Stopwatch with lap time" width="180">
 </p>
 
-*Screenshots from the desktop simulator.*
+*Screenshots from the current desktop simulator, using sample data.*
 
 ## Features
 
@@ -62,9 +62,15 @@ acquisition evidence even when no BPM is accepted and retains the last periodic
 attempt until the next measurement. See [heart-rate investigation](docs/heart-rate.md).
 
 <p>
+  <img src="docs/images/watch-graph-options.png" alt="Watch face graph options" width="180">
   <img src="docs/images/clock-heart-graph.png" alt="Heart-rate graph on clock face" width="180">
   <img src="docs/images/clock-step-graph.png" alt="Steps-per-minute graph on clock face" width="180">
 </p>
+
+<p>
+  <img src="docs/images/heart-signal.png" alt="Heart signal diagnostics with a sample optical waveform" width="180">
+</p>
+
 Battery percentage is a voltage estimate, and runtime is still being evaluated.
 
 Swipe down from the clock, or tap its top-center chevron, for quick brightness,
@@ -78,6 +84,11 @@ time, and waits after an approximate reboot handoff. Notifications still arrive
 silently; alarms and countdown alerts still vibrate. Ending quiet hours does not
 buzz old messages.
 
+<p>
+  <img src="docs/images/quick-controls.png" alt="Quick controls for backlight, touch wake, buzz, Bluetooth, and quiet hours" width="180">
+  <img src="docs/images/quiet-hours.png" alt="Quiet hours scheduled from 22:00 to 07:00" width="180">
+</p>
+
 Tap the battery status on the clock or quick-controls screen for voltage history.
 It keeps 32 points in RAM, normally at least 15 minutes apart, with extra points
 for observed charging and power-setting changes. Yellow ticks mark these changes.
@@ -85,6 +96,10 @@ It reuses existing power samples and does not wake a sleeping watch for logging;
 gaps longer than 30 minutes are disconnected. Unplug elapsed time is shown through
 the latest sample only when an unplug was observed since boot. History resets on
 reboot; the voltage plot does not measure current draw.
+
+<p>
+  <img src="docs/images/battery-history.png" alt="Battery voltage history with power-setting markers and unplug elapsed time" width="180">
+</p>
 
 Swipe left on that history for **Battery use**. It first learns from observed
 sleep/wake time and existing battery samples. **Sleep** estimates remaining days
@@ -100,6 +115,15 @@ Both estimates leave 10% in reserve and show ranges; they are experimental
 voltage-based approximations, not measured battery capacity or guaranteed runtime.
 Until enough evidence exists, they display **Learning**. Learning stays in RAM
 and resets on reboot; it adds no sleeping ADC polls or flash writes.
+
+<p>
+  <img src="docs/images/battery-usage-learning.png" alt="Battery use while sleep and typical runtime estimates are learning" width="180">
+  <img src="docs/images/battery-usage-learned.png" alt="Battery use with learned runtime ranges and daily screen time from simulator sample data" width="180">
+</p>
+
+*Battery plots and runtime ranges above use simulator sample data, not measured
+watch runtime.*
+
 See the [feature budgets and deferred work](docs/feature-budget-2026-11-03.md).
 
 ## Build and first install
@@ -201,6 +225,17 @@ Mouse clicks/drags simulate touch; Space is the side button. Set
 Swipe right from the clock for Apps and left for Settings. Bluetooth and tap to
 wake default to off; enable them in Settings. The clock needs manual setting or
 phone sync after an unexpected reset.
+
+To regenerate the simulator screenshots with deterministic sample data:
+
+```sh
+GOPINE_TEST_SCREENSHOTS=/tmp/gopine-screenshots \
+  go test -run '^TestDesktopControlsAndRendering$' -count=1 .
+```
+
+The capture test renders through the desktop simulator’s SDL display. README
+images use the matching capture names, except `health.png`, which uses
+`health-periodic.png`. Copy the selected captures into `docs/images/`.
 
 Tagging `vMAJOR.MINOR.PATCH` runs the tested BLE release workflow. It publishes
 update ZIPs and resource reports; wired bootstrap images are built locally.
