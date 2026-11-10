@@ -4,8 +4,8 @@ goPine is PineTime smartwatch firmware written in Go with
 [TinyGo](https://tinygo.org/). This is a developer project: build it locally and
 use an SWD debugger for the first install, then update over Bluetooth.
 
-[Browser updater](https://distortions81.github.io/goPineTime/) ·
-[Firmware and releases](https://github.com/Distortions81/goPineTime/releases)
+[Browser updater](https://m45-software.github.io/goPineTime/) ·
+[Firmware and releases](https://github.com/M45-Software/goPineTime/releases)
 
 <p>
   <img src="docs/images/clock.png" alt="Dark watch face" width="180">
@@ -80,7 +80,7 @@ From the repository root, fetch the pinned BLE dependency and build:
 ```sh
 git clone https://github.com/InfiniTimeOrg/InfiniTime.git build/deps/InfiniTime
 git -C build/deps/InfiniTime checkout --detach 6c119eb52206b580b556b41633dddc1e1b66a8da
-version=0.3.38  # Set to the version you are building.
+version=0.3.39  # Set to the version you are building.
 bash scripts/build-ota.sh --bootstrap "$version"
 bash scripts/build-ota.sh --ble "$version"
 go run ./cmd/otapack \
@@ -123,7 +123,7 @@ use the bootstrap procedure above for Bluetooth updates and rollback.
 Requires a BLE build of goPine 0.3.22 or newer already installed.
 Build with `bash scripts/build-ota.sh --ble "$version"`, or download a release ZIP.
 
-1. Open the [browser updater](https://distortions81.github.io/goPineTime/) in a
+1. Open the [browser updater](https://m45-software.github.io/goPineTime/) in a
    Web Bluetooth browser and choose the firmware ZIP.
 2. On the watch, open **Settings → Firmware Update** and hold until
    **Ready to connect**. Use at least 20% battery or external power.
