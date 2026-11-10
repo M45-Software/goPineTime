@@ -11,12 +11,12 @@ jobs:
   desktop:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-go@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '22'
           package-manager-cache: false
@@ -56,12 +56,12 @@ jobs:
   pinetime:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-go@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
-      - uses: acifani/setup-tinygo@v3
+      - uses: acifani/setup-tinygo@f51bf108c9895381060398804ce6cf6f62692106 # v3
         with:
           tinygo-version: "0.42.0"
           install-binaryen: "false"
@@ -71,7 +71,7 @@ jobs:
         env:
           FIRMWARE_TIME: "00:00:00"
         run: bash scripts/build-ota.sh 0.2.0
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: InfiniTimeOrg/InfiniTime
           ref: 6c119eb52206b580b556b41633dddc1e1b66a8da

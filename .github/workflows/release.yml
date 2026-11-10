@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
       - name: Read release version and commit date
@@ -27,19 +27,19 @@ jobs:
           epoch=$(git show -s --format=%ct HEAD)
           echo "FIRMWARE_DATE=$(date -u -d "@$epoch" +%Y-%m-%d)" >> "$GITHUB_ENV"
           echo "FIRMWARE_TIME=$(date -u -d "@$epoch" +%H:%M:%S)" >> "$GITHUB_ENV"
-      - uses: actions/setup-go@v7
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '22'
           package-manager-cache: false
-      - uses: acifani/setup-tinygo@v3
+      - uses: acifani/setup-tinygo@f51bf108c9895381060398804ce6cf6f62692106 # v3
         with:
           tinygo-version: '0.42.0'
           install-binaryen: 'false'
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: InfiniTimeOrg/InfiniTime
           ref: 6c119eb52206b580b556b41633dddc1e1b66a8da
@@ -71,7 +71,7 @@ jobs:
         run: |
           python3 scripts/release_assets.py stage "$GITHUB_REF_NAME" \
             --commit "$(git rev-parse HEAD)" --repository "$GITHUB_REPOSITORY"
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: ota-release
           path: build/release/
@@ -85,7 +85,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v8
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           name: ota-release
           path: release
