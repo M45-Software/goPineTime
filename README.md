@@ -68,7 +68,7 @@ Battery percentage is a voltage estimate, and runtime is still being evaluated.
 
 ## Build and first install
 
-Requires Go 1.27.3, TinyGo 0.42.0, Python 3, clang, and LLVM tools (`llvm-ar`,
+Requires Go 1.27.4, TinyGo 0.42.0, Python 3, clang, and LLVM tools (`llvm-ar`,
 `llvm-nm`, `llvm-dwarfdump`, `llvm-objdump`). For flashing, use a 3.3 V SWD probe
 with access to the PineTime debug pads and a programmer such as pyOCD.
 

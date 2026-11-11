@@ -1,6 +1,6 @@
 module github.com/Distortions81/goPine
 
-go 1.27.3
+go 1.27.4
 
 require (
 	github.com/veandco/go-sdl2 v0.4.40
